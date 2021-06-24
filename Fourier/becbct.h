@@ -9,15 +9,11 @@
 #define roundt(x) round(x*100)/100.0
 using namespace std;
 struct TrigonometricFunction{
-    float alpha;
-    float omega;
-    float fai;
+    float alpha,omega,fai;
 };
 struct sizestruct{
-	int x;
-	int y;
-	int z;
-}sizes,sete;
+	int x,y,z;
+}Mainsize,Initialsize,Summonsize,sete;
 string ArmorStandNameBuilder(int Num){
     int High=Num/58;
     int Low=Num%58;
@@ -33,7 +29,7 @@ string ArmorStandNameBuilder(int Num){
 void FourierSeriesBuilder(TrigonometricFunction TriFunc[],int n){
     string name,namep,SelectorA,SelectorB;
     ofstream ofs;
-    ofs.open("in.txt");
+    ofs.open("Main.txt");
     for(register int i=0;i<n;++i){
 	name=ArmorStandNameBuilder(i);
 	namep=ArmorStandNameBuilder(i+1);
@@ -47,7 +43,7 @@ void FourierSeriesBuilder(TrigonometricFunction TriFunc[],int n){
 void InitialPhaseFix(TrigonometricFunction TriFunc[],int n){
     string name,Selector;
     ofstream ofs;
-    ofs.open("initial.txt");
+    ofs.open("Initial.txt");
     for(register int i=0;i<n;++i){
 	name=ArmorStandNameBuilder(i);
         Selector="@e[type=armor_stand,name=\""+name+"\"]";
@@ -59,17 +55,7 @@ void InitialPhaseFix(TrigonometricFunction TriFunc[],int n){
 }
 void SummonCommandBuilder(int cb){
     ofstream ofs;
-    ofs.open("summons.txt");
+    ofs.open("Summon.txt");
     for(int i=1;i<=cb;i++)ofs<<"summon armor_stand "+ArmorStandNameBuilder(i-1)+" "+to_string(sete.x)+" "+to_string(sete.y)+" "+to_string(sete.z)<<(i==cb?"":"|+");
-    ofs.close();
-}
-void DefultBuilder(vector<int>block_indices){
-	ofstream ofs;
-    ofs.open("defult.txt");
-    for(int i=0;i<block_indices.size();i++){
-    	ofs<<block_indices[i];
-    	if(i!=block_indices.size()-1)ofs<<" ";
-	}
-	ofs<<"|"<<sizes.x<<" "<<sizes.y<<" "<<sizes.z;
     ofs.close();
 }

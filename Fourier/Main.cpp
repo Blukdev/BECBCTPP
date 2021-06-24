@@ -1,5 +1,6 @@
 #include "opt.h"
-#include "becbct.h" 
+#include "becbct.h"
+#include "CTF.h" 
 #include<iostream>
 #include<vector>
 #include<string>
@@ -11,6 +12,10 @@
 #endif
 using namespace std;
 TrigonometricFunction TF[10000];
+bool isFileExists(string& name) {
+    ifstream f(name.c_str());
+    return f.good();
+}
 void init(){
 	sete.x=10;
 	sete.y=4;
@@ -24,7 +29,7 @@ void Getdata(int &n,char *filename){
 }
 int main(int argc,char *argv[]){
 	init();
-	char *inputname="set.txt",*outputname="out.mcstructure";
+	char *inputname="set.txt",*outputname="Out";
 	vector<string>str={"--help","-h","--input","-i","--output","-o"};
 	vector<LampOpt::CommandRead>Ret=LampOpt::getopt(argc,argv,str);
 	for(int i=0;i<Ret.size();i++)
@@ -37,19 +42,10 @@ int main(int argc,char *argv[]){
 	FourierSeriesBuilder(TF,n);
 	InitialPhaseFix(TF,n);
 	cb=types/2+1;
-	vector<int>block_indices;
-	block_indices.push_back(0);
-	for(int i=1;i<=types-1;i++)block_indices.push_back(1);
-	for(int i=1;i<=types;i++)block_indices.push_back(2);
-	block_indices.push_back(3);
-	for(int i=1;i<=types-1;i++)block_indices.push_back(1);
-	for(int i=1;i<=types;i++)block_indices.push_back(2);
-	block_indices.push_back(3);
-	for(int i=1;i<=cb-1;i++)block_indices.push_back(1);
-	for(int i=1;i<=types-cb;i++)block_indices.push_back(2);
-	sizes.x=5,sizes.y=1,sizes.z=types;
-	SummonCommandBuilder(cb);
-	DefultBuilder(block_indices);
-	system(("node Doit.js "+string(outputname)).c_str()); 
+	SummonCommandBuilder(cb);;
+	SummonBI(types,"Maindefult.txt");
+	SummonBI(types,"InitialDefult.txt");
+	SummonBI(cb,"SummonDefult.txt");
+	system(("node Doit.js "+string(outputname)).c_str());
     return 0;
 }
