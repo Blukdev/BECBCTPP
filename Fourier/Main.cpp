@@ -5,7 +5,7 @@
 #include<vector>
 #include<string>
 #ifdef __linux__
-#include<stdlib>
+#include<cstdlib>
 #endif
 #ifdef _WIN64
 #include<windows.h>
