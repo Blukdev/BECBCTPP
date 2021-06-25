@@ -379,4 +379,4 @@ for(var i:number=0;i<Summontypes;i++){
 const SummonoutBuffer:any=fs.createWriteStream(Filename+"Summon.mcstructure");
 const SummonnewBuf:any=writeUncompressed(Summon,"little");
 SummonoutBuffer.write(SummonnewBuf);
-SummonoutBuffer.end(()=>process.stdout.write("Summon Created successfully\n"));
+SummonoutBuffer.end(()=>process.stdout.write("Summon Created successfully"));
