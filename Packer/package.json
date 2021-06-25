@@ -1,0 +1,21 @@
+{
+  "name": "mcstrpacker",
+  "version": "1.0.0",
+  "description": "A Minecraft structural file packaging tool",
+  "main": "./index.js",
+  "scripts": {
+    "test": ""
+  },
+  "bin": {
+    "McStrPack": "./index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^15.12.4",
+    "adm-zip": "^0.5.5",
+    "uuid": "^8.3.2"
+  },
+  "preferGlobal": true
+}
