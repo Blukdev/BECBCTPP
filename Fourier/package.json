@@ -1,0 +1,16 @@
+{
+  "name": "becbctppfourier",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Doit.js",
+  "scripts": {
+    "test": ""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^15.12.4",
+    "prismarine-nbt": "^1.5.0"
+  }
+}
