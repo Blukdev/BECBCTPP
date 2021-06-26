@@ -14,7 +14,7 @@ var Mainsizes:Array<string>=Mainsize.split(" ");
 var MainBlockindices:Array<string>=MainBlockindice.split(" ");
 var Maintypes:number=MainBlockindices.length;
 for(var i:number=0;i<3;i++)Main["value"]["size"]["value"]["value"][i]=Number(Mainsizes[i]);
-for (var i:number=0;i<Maintypes;i++){
+for(var i:number=0;i<Maintypes;i++){
     if(MainBlockindices[i].includes("a"))Main["value"]["structure"]["value"]["block_indices"]["value"]["value"][0]["value"][i]=Number(MainBlockindices[i][0]);
     else Main["value"]["structure"]["value"]["block_indices"]["value"]["value"][0]["value"][i]=Number(MainBlockindices[i]);
     Main["value"]["structure"]["value"]["block_indices"]["value"]["value"][1]["value"][i]=-1;
@@ -122,6 +122,7 @@ for(var i:number=0;i<Maintypes;i++){
             }
         }
     };
+    if(MainBlockindices[i]=="0a")bd["value"]["block_entity_data"]["value"]["auto"]["value"]=0;
     Main["value"]["structure"]["value"]["palette"]["value"]["default"]["value"]["block_position_data"]["value"][i]=bd;
 }
 const MainoutBuffer:any=fs.createWriteStream(Filename+"Main.mcstructure");
@@ -248,6 +249,7 @@ for(var i:number=0;i<Initialtypes;i++){
             }
         }
     };
+    if(InitialBlockindices[i]=="0a")bd["value"]["block_entity_data"]["value"]["auto"]["value"]=0;
     Initial["value"]["structure"]["value"]["palette"]["value"]["default"]["value"]["block_position_data"]["value"][i]=bd;
 }
 const InitialoutBuffer:any=fs.createWriteStream(Filename+"Initial.mcstructure");
@@ -374,9 +376,10 @@ for(var i:number=0;i<Summontypes;i++){
             }
         }
     };
+    if(SummonBlockindices[i]=="0a")bd["value"]["block_entity_data"]["value"]["auto"]["value"]=0;
     Summon["value"]["structure"]["value"]["palette"]["value"]["default"]["value"]["block_position_data"]["value"][i]=bd;
 }
 const SummonoutBuffer:any=fs.createWriteStream(Filename+"Summon.mcstructure");
 const SummonnewBuf:any=writeUncompressed(Summon,"little");
 SummonoutBuffer.write(SummonnewBuf);
-SummonoutBuffer.end(()=>process.stdout.write("Summon Created successfully"));
+SummonoutBuffer.end(()=>process.stdout.write("Summon Created successfully\n"));
