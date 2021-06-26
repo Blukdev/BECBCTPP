@@ -53,6 +53,7 @@ int main(int argc,char *argv[]){
 		for(int j=0;j<SplitResult.size();j++){
 			if(SplitResult[j]=="-1"||(!includes(SplitResult[j],'a')))continue;
 			jsonxx::json CommandBlock=BlockPackage;
+			if(SplitResult[j]=="0a")CommandBlock["value"]["block_entity_data"]["value"]["auto"]["value"]=0;
 			string ThisCommand=(string)MainPackage["Define"][Position]["Define"][NowCommand]["Command"];
 			string BlockPosition=to_string(j);
 			CommandBlock["value"]["block_entity_data"]["value"]["Command"]["value"]=ThisCommand;
