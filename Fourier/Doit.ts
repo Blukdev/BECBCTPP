@@ -84,7 +84,7 @@ for(var i:number=0;i<Maintypes;i++){
                     },
                     "auto":{
                         "type":"byte",
-                        "value":0
+                        "value":1
                     },
                     "conditionMet":{
                         "type":"byte",
@@ -210,7 +210,7 @@ for(var i:number=0;i<Initialtypes;i++){
                     },
                     "auto":{
                         "type":"byte",
-                        "value":0
+                        "value":1
                     },
                     "conditionMet":{
                         "type":"byte",
@@ -336,7 +336,7 @@ for(var i:number=0;i<Summontypes;i++){
                     },
                     "auto":{
                         "type":"byte",
-                        "value":0
+                        "value":1
                     },
                     "conditionMet":{
                         "type":"byte",
