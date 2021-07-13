@@ -141,7 +141,7 @@ var Initialsizes:Array<string>=Initialsize.split(" ");
 var InitialBlockindices:Array<string>=InitialBlockindice.split(" ");
 var Initialtypes:number=InitialBlockindices.length;
 for(var i:number=0;i<3;i++)Initial["value"]["size"]["value"]["value"][i]=Number(Initialsizes[i]);
-for (var i:number=0;i<Initialtypes;i++){
+for(var i:number=0;i<Initialtypes;i++){
     if(InitialBlockindices[i].includes("a"))Initial["value"]["structure"]["value"]["block_indices"]["value"]["value"][0]["value"][i]=Number(InitialBlockindices[i][0]);
     else Initial["value"]["structure"]["value"]["block_indices"]["value"]["value"][0]["value"][i]=Number(InitialBlockindices[i]);
     Initial["value"]["structure"]["value"]["block_indices"]["value"]["value"][1]["value"][i]=-1;
@@ -268,7 +268,7 @@ var Summonsizes:Array<string>=Summonsize.split(" ");
 var SummonBlockindices:Array<string>=SummonBlockindice.split(" ");
 var Summontypes:number=SummonBlockindices.length;
 for(var i:number=0;i<3;i++)Summon["value"]["size"]["value"]["value"][i]=Number(Summonsizes[i]);
-for (var i:number=0;i<Summontypes;i++){
+for(var i:number=0;i<Summontypes;i++){
     if(SummonBlockindices[i].includes("a"))Summon["value"]["structure"]["value"]["block_indices"]["value"]["value"][0]["value"][i]=Number(SummonBlockindices[i][0]);
     else Summon["value"]["structure"]["value"]["block_indices"]["value"]["value"][0]["value"][i]=Number(SummonBlockindices[i]);
     Summon["value"]["structure"]["value"]["block_indices"]["value"]["value"][1]["value"][i]=-1;
