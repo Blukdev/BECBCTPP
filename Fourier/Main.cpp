@@ -12,10 +12,6 @@
 #endif
 using namespace std;
 TrigonometricFunction TF[10000];
-bool isFileExists(string& name) {
-    ifstream f(name.c_str());
-    return f.good();
-}
 void init(){
 	sete.x=10;
 	sete.y=4;
