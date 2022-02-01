@@ -30,7 +30,7 @@ int main(int argc,char *argv[]){
 	int Chains=(int)MainPackage["Chains"];
 	ofstream ConfigFileOut;
 	ConfigFileOut.open("Config.txt");
-	for(int i=1;i<=Chains;i++){
+	for(int i=1;i<=Chains;++i){
 		string Position=to_string(i);
 		int Lenth=(int)MainPackage["Define"][Position]["Lenth"];
 		string FileName=(string)MainPackage["Define"][Position]["Name"];
@@ -44,13 +44,13 @@ int main(int argc,char *argv[]){
 		CBPackage["value"]["size"]["value"]["value"][2]=BI.size.z;
 		vector<string>SplitResult;
 		Split(BI.BI,SplitResult);
-		for(int j=0;j<SplitResult.size();j++){
+		for(int j=0;j<SplitResult.size();++j){
 			if(includes(SplitResult[j],'a'))CBPackage["value"]["structure"]["value"]["block_indices"]["value"]["value"][0]["value"][j]=Number(SplitResult[j][0]);
 			else CBPackage["value"]["structure"]["value"]["block_indices"]["value"]["value"][0]["value"][j]=Number(SplitResult[j]);
 			CBPackage["value"]["structure"]["value"]["block_indices"]["value"]["value"][1]["value"][j]=-1;
 		}
 		int NowCommand=0;
-		for(int j=0;j<SplitResult.size();j++){
+		for(int j=0;j<SplitResult.size();++j){
 			if(SplitResult[j]=="-1"||(!includes(SplitResult[j],'a')))continue;
 			jsonxx::json CommandBlock=BlockPackage;
 			if(SplitResult[j]=="0a")CommandBlock["value"]["block_entity_data"]["value"]["auto"]["value"]=0;
@@ -60,7 +60,7 @@ int main(int argc,char *argv[]){
 			bool NeedCondition=(bool)MainPackage["Define"][Position]["Define"][NowCommand]["Condition"];
 			if(NeedCondition==true)CommandBlock["value"]["block_entity_data"]["value"]["conditionMet"]["value"]=1;
 			CBPackage["value"]["structure"]["value"]["palette"]["value"]["default"]["value"]["block_position_data"]["value"][BlockPosition]=CommandBlock;
-			NowCommand++;
+			++NowCommand;
 		}
 		ofstream JSONFileOut;
 		JSONFileOut.open((FileName+".json").c_str());
