@@ -13,7 +13,7 @@ int main(int argc,char *argv[]){
 	char *InputName="set.json",*OutPutName="Out";
 	vector<string>str={"--help","-h","--input","-i","--output","-o"};
 	vector<LampOpt::CommandRead>Ret=LampOpt::getopt(argc,argv,str);
-	for(int i=0;i<Ret.size();i++)
+	for(int i=0;i<Ret.size();++i)
 		if(Ret[i].CommandName=="-h")cout<<"---help---\n--help/-h : Get help\n--input/-i : Set input file,default is set.json\n--output/-o : Set output file,default is out.mcstructure"; 
 		else if(Ret[i].CommandName=="-i")InputName=argv[Ret[i].argvl];
 		else if(Ret[i].CommandName=="-o")OutPutName=argv[Ret[i].argvl];
@@ -30,12 +30,12 @@ int main(int argc,char *argv[]){
 	ConfigFileOut.open("Config.txt");
 	for(int i=1;i<=Chains;++i){
 		string Position=to_string(i);
-		int Lenth=(int)MainPackage["Define"][Position]["Lenth"];
+		int Length=(int)MainPackage["Define"][Position]["Length"];
 		string FileName=(string)MainPackage["Define"][Position]["Name"];
 		string FirstCommandType=(string)MainPackage["Define"][Position]["FirstCommandType"];
 		if(i==Chains)ConfigFileOut<<FileName<<".json";
 		else ConfigFileOut<<FileName<<".json ";
-		Node BI=SummonBI(Lenth);
+		Node BI=SummonBI(Length);
 		jsonxx::json CBPackage=FirstCommandType=="rcb"?RcbPackage:NcbPackage;
 		CBPackage["value"]["size"]["value"]["value"][0]=BI.size.x;
 		CBPackage["value"]["size"]["value"]["value"][1]=BI.size.y;
@@ -58,7 +58,7 @@ int main(int argc,char *argv[]){
 			bool NeedCondition=(bool)MainPackage["Define"][Position]["Define"][NowCommand]["Condition"];
 			if(NeedCondition==true)CommandBlock["value"]["block_entity_data"]["value"]["conditionMet"]["value"]=1;
 			CBPackage["value"]["structure"]["value"]["palette"]["value"]["default"]["value"]["block_position_data"]["value"][BlockPosition]=CommandBlock;
-			++NowCommand;
+			NowCommand++;
 		}
 		ofstream JSONFileOut;
 		JSONFileOut.open((FileName+".json").c_str());
