@@ -1,5 +1,3 @@
-#include<iostream>
-#include<cstdio>
 #include<fstream>
 #include "lib/jsonxx/json.hpp"
 #include "lib/ctf.h"
