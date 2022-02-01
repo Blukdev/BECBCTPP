@@ -35,30 +35,22 @@ int main(int argc,char *argv[]){
 		string FirstCommandType=(string)MainPackage["Define"][Position]["FirstCommandType"];
 		if(i==Chains)ConfigFileOut<<FileName<<".json";
 		else ConfigFileOut<<FileName<<".json ";
-		Node BI=SummonBI(Length);
+		vector<string>commands;
+		for(int j=0;j<Length;++j)commands.push_back((string)MainPackage["Define"][Position]["Define"][j]["Command"]);
+		auto result=CTBPairing(commands.size(),commands);
 		jsonxx::json CBPackage=FirstCommandType=="rcb"?RcbPackage:NcbPackage;
-		CBPackage["value"]["size"]["value"]["value"][0]=BI.size.x;
-		CBPackage["value"]["size"]["value"]["value"][1]=BI.size.y;
-		CBPackage["value"]["size"]["value"]["value"][2]=BI.size.z;
-		vector<string>SplitResult;
-		Split(BI.BI,SplitResult);
-		for(int j=0;j<SplitResult.size();++j){
-			if(includes(SplitResult[j],'a'))CBPackage["value"]["structure"]["value"]["block_indices"]["value"]["value"][0]["value"][j]=Number(SplitResult[j][0]);
-			else CBPackage["value"]["structure"]["value"]["block_indices"]["value"]["value"][0]["value"][j]=Number(SplitResult[j]);
+		CBPackage["value"]["size"]["value"]["value"][0]=result.second.x;
+		CBPackage["value"]["size"]["value"]["value"][1]=result.second.y;
+		CBPackage["value"]["size"]["value"]["value"][2]=result.second.z;
+		auto CBS=move(result.first);
+		for(int j=0;j<CBS.size();++j){
+			CBPackage["value"]["structure"]["value"]["block_indices"]["value"]["value"][0]["value"][j]=CBS[j].id;
 			CBPackage["value"]["structure"]["value"]["block_indices"]["value"]["value"][1]["value"][j]=-1;
-		}
-		int NowCommand=0;
-		for(int j=0;j<SplitResult.size();++j){
-			if(SplitResult[j]=="-1"||(!includes(SplitResult[j],'a')))continue;
 			jsonxx::json CommandBlock=BlockPackage;
-			if(SplitResult[j]=="0a")CommandBlock["value"]["block_entity_data"]["value"]["auto"]["value"]=0;
-			string ThisCommand=(string)MainPackage["Define"][Position]["Define"][NowCommand]["Command"];
-			string BlockPosition=to_string(j);
-			CommandBlock["value"]["block_entity_data"]["value"]["Command"]["value"]=ThisCommand;
-			bool NeedCondition=(bool)MainPackage["Define"][Position]["Define"][NowCommand]["Condition"];
-			if(NeedCondition==true)CommandBlock["value"]["block_entity_data"]["value"]["conditionMet"]["value"]=1;
-			CBPackage["value"]["structure"]["value"]["palette"]["value"]["default"]["value"]["block_position_data"]["value"][BlockPosition]=CommandBlock;
-			NowCommand++;
+			if(CBS[j].id==-1)continue;
+			if(CBS[j].id==0)CommandBlock["value"]["block_entity_data"]["value"]["auto"]["value"]=0;
+			CommandBlock["value"]["block_entity_data"]["value"]["Command"]["value"]=CBS[j].command;
+			CBPackage["value"]["structure"]["value"]["palette"]["value"]["default"]["value"]["block_position_data"]["value"][to_string(j)]=CommandBlock;
 		}
 		ofstream JSONFileOut;
 		JSONFileOut.open((FileName+".json").c_str());
