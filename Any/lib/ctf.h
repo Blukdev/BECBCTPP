@@ -1,6 +1,5 @@
 #pragma once
 
-#include<iostream>
 #include<string>
 #include<fstream>
 #include<vector>
@@ -61,10 +60,7 @@ pair <vector<CommandBlock>, s> CTBPairing(int types, vector <string> &commands) 
             else pos.z--;
             CmdCounter--;
         }
-            //z鏂瑰悜涓婄殑鐩撮摼锛屾湁鍛戒护
 
-
-            //z灏緓灏撅紝y鎶崌锛屾棤鍛戒护
         else if ((pos.z == 0 && pos.x == 63 && pos.y % 2 == 0) || (pos.z == 63 && pos.x == 0 && pos.y % 2 == 1)) {
             TTFlip();
             BlockInfo[pos.x][pos.y][pos.z].id = TurnToward;
@@ -76,7 +72,6 @@ pair <vector<CommandBlock>, s> CTBPairing(int types, vector <string> &commands) 
             TTFlip();
             Counter.y++;
         }
-            //鎷愯锛屾棤鍛戒护
 
         else {
             BlockInfo[pos.x][pos.y][pos.z].id = TurnToward;
