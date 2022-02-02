@@ -35,7 +35,7 @@ int main(int argc,char *argv[]){
 		else ConfigFileOut<<FileName<<".json ";
 		vector<string>commands;
 		for(int j=0;j<Length;++j)commands.push_back((string)MainPackage["Define"][Position]["Define"][j]["Command"]);
-		auto result=CTBPairing(commands.size(),commands);
+		auto result=CTBPairing(commands.size());
 		jsonxx::json CBPackage=FirstCommandType=="rcb"?RcbPackage:NcbPackage;
 		CBPackage["value"]["size"]["value"]["value"][0]=result.second.x;
 		CBPackage["value"]["size"]["value"]["value"][1]=result.second.y;
@@ -47,7 +47,7 @@ int main(int argc,char *argv[]){
 			jsonxx::json CommandBlock=BlockPackage;
 			if(CBS[j].id==-1)continue;
 			if(CBS[j].id==0)CommandBlock["value"]["block_entity_data"]["value"]["auto"]["value"]=0;
-			CommandBlock["value"]["block_entity_data"]["value"]["Command"]["value"]=CBS[j].command;
+			CommandBlock["value"]["block_entity_data"]["value"]["Command"]["value"]=commands[CBS[j].command];
 			CBPackage["value"]["structure"]["value"]["palette"]["value"]["default"]["value"]["block_position_data"]["value"][to_string(j)]=CommandBlock;
 		}
 		ofstream JSONFileOut;
