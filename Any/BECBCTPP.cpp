@@ -2,7 +2,6 @@
 #include "lib/jsonxx/json.hpp"
 #include "lib/ctf.h"
 #include "lib/opt.h"
-#include "lib/stringlib.h"
 using namespace std;
 string GetAllData(char *FileName){
 	ifstream JsonIn(FileName); 
