@@ -9,13 +9,12 @@ string GetAllData(char *FileName){
 	return result;
 }
 int main(int argc,char *argv[]){
-	char *InputName="set.json",*OutPutName="Out";
-	vector<string>str={"--help","-h","--input","-i","--output","-o"};
+	char *InputName="set.json";
+	vector<string>str={"--help","-h","--input","-i"};
 	vector<LampOpt::CommandRead>Ret=LampOpt::getopt(argc,argv,str);
 	for(int i=0;i<Ret.size();++i)
-		if(Ret[i].CommandName=="-h")cout<<"---help---\n--help/-h : Get help\n--input/-i : Set input file,default is set.json\n--output/-o : Set output file,default is out.mcstructure"; 
+		if(Ret[i].CommandName=="-h")cout<<"---help---\n--help/-h : Get help\n--input/-i : Set input file,default is set.json"; 
 		else if(Ret[i].CommandName=="-i")InputName=argv[Ret[i].argvl];
-		else if(Ret[i].CommandName=="-o")OutPutName=argv[Ret[i].argvl];
 	string JSONContent=GetAllData(InputName);
 	string RcbContent=GetAllData("./jsonlib/Rcb.json");
 	string NcbContent=GetAllData("./jsonlib/Ncb.json");
