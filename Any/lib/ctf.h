@@ -19,6 +19,13 @@ struct s {
 
 CommandBlock BlockInfo[64][64][64];
 
+inline init(){
+	TurnToward = 2;
+	ChainToward = 1;
+	TurnHistory = -2;
+	Initialize = 0;
+} 
+
 inline void TTFlip() {
     if (TurnToward == 2)TurnHistory = TurnToward, TurnToward = 4;
     else if (TurnToward == 4 && TurnHistory == 2)TurnHistory = TurnToward, TurnToward = 5;
@@ -33,6 +40,7 @@ inline void CTFlip() {
 
 pair <vector<CommandBlock>, s> CTBPairing(int CmdCounter) {
     s size, Counter, pos;
+    init();
     int LinearCounter = 1;
     while (CmdCounter) {
         Counter.z++;
