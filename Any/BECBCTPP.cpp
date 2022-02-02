@@ -35,7 +35,7 @@ int main(int argc,char *argv[]){
 		if(i==Chains)ConfigFileOut<<FileName<<".json";
 		else ConfigFileOut<<FileName<<".json ";
 		vector<string>commands;
-		for(int j=0;j<Length;++j)commands.push_back((string)MainPackage["Define"][Position]["Define"][j]["Command"]);
+		for(int j=0;j<Length;++j)commands.push_back((string)MainPackage["Define"][Position]["Define"][j]);
 		auto result=CTBPairing(commands.size());
 		jsonxx::json CBPackage=FirstCommandType=="rcb"?RcbPackage:NcbPackage;
 		CBPackage["value"]["size"]["value"]["value"][0]=result.second.x;
