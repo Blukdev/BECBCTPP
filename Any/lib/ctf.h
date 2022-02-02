@@ -23,7 +23,7 @@ inline void TTFlip() {
     if (TurnToward == 2)TurnHistory = TurnToward, TurnToward = 4;
     else if (TurnToward == 4 && TurnHistory == 2)TurnHistory = TurnToward, TurnToward = 5;
     else if (TurnToward == 4 && TurnHistory == 5)TurnHistory = TurnToward, TurnToward = 2;
-    else TurnHistory = TurnToward, TurnToward = 2;
+    else TurnHistory = TurnToward, TurnToward = 4;
 }
 
 inline void CTFlip() {
@@ -34,7 +34,7 @@ inline void CTFlip() {
 pair <vector<CommandBlock>, s> CTBPairing(int CmdCounter) {
     s size, Counter, pos;
     int LinearCounter = 1;
-    while (CmdCounter > 0) {
+    while (CmdCounter) {
         Counter.z++;
         if (Initialize == 0) {
             CmdCounter--;
@@ -53,7 +53,7 @@ pair <vector<CommandBlock>, s> CTBPairing(int CmdCounter) {
             CmdCounter--;
         }
 
-        else if ((pos.z == 0 && pos.x == 63 && pos.y % 2 == 0) || (pos.z == 63 && pos.x == 0 && pos.y % 2 == 1)) {
+        else if ((pos.z == 0 && pos.x == 63 && pos.y % 2 == 0) || (pos.z == 0 && pos.x == 0 && pos.y % 2 == 1)) {
             TTFlip();
             BlockInfo[pos.x][pos.y][pos.z].id = TurnToward;
             BlockInfo[pos.x][pos.y][pos.z].command = -1;
@@ -69,8 +69,7 @@ pair <vector<CommandBlock>, s> CTBPairing(int CmdCounter) {
         else {
             BlockInfo[pos.x][pos.y][pos.z].id = TurnToward;
             BlockInfo[pos.x][pos.y][pos.z].command = -1;
-            if (TurnToward == 2)pos.x++;
-            else pos.x--;
+            pos.x = (TurnToward == 2) ? pos.x + 1 : pos.x - 1;
             CTFlip();
             BlockInfo[pos.x][pos.y][pos.z].id = ChainToward;
             BlockInfo[pos.x][pos.y][pos.z].command = -1;
