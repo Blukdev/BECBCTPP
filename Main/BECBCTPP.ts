@@ -1,7 +1,7 @@
 import fs=require("fs");
 import process=require("process");
 import {writeUncompressed} from 'prismarine-nbt';
-var Config:string=fs.readFileSync("config.txt").toString();
+var Config:string=fs.readFileSync("Config.txt").toString();
 var FileNames:Array<string>=Config.split(" ");
 var FileNamesLenth=FileNames.length;
 for(let i:number=0;i<FileNamesLenth;i++){
