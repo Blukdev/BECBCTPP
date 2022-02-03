@@ -19,7 +19,7 @@ struct s {
 
 CommandBlock BlockInfo[64][64][64];
 
-inline init(){
+inline void init(){
 	TurnToward = 2;
 	ChainToward = 1;
 	TurnHistory = -2;
