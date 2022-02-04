@@ -2,3 +2,5 @@
 - A better Bedrock Edition Command Block's Convenient Commands Importing Tool.
 - This project belongs to the second phase of the command block import plan.
  <div align=center><img src="./icon.png" width = "300" height = "300" alt="icon" align=center/></div>
+-New Logo
+ <div align=center><img src="./BECBCTPP_LOGO.png" width = "300" height = "300" alt="icon" align=center/></div>
